@@ -28,35 +28,40 @@
             <table class="table table-striped table-hover">
                 <thead>
                     <tr>
+                    	<th></th>
                         <th>Exam Title</th>
                         <th>Course</th>
                         <th>Semester</th>
-                        
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
                   <%
-/*                   	String username = (String)session.getAttribute("username");
+                   	String username = (String)session.getAttribute("username");
                   
                   	ApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
                   	
-                  	ExamDAO exam = (ExamDAO)context.getBean("examService");
-/*                   	ExamService examService;
- */  /*                  List<Exam> lst = exam.showExamsForTeachers(username);
+                  	ExamDAO exam = (ExamDAO)context.getBean("examdao");
+                    List<Exam> lst = exam.showExamsForTeachers(username);
                     
                     if(lst != null)
                     {
 						for(Exam ex : lst)
                     	{
- */                    %>
-                    <tr>
-                    	<%-- <td><%=ex.getTitle() %></td>
-                    	<td><%=ex.getCourse() %></td>
-                    	<td><%=ex.getSemester() %></td>
-                     --%></tr>
+                     %>
+                     <form action="viewquestionsforexam" method="post">
+                    	<tr>
+                    		<td><input type="hidden" value="<%=ex.getExamid() %>" name="examid"></td>
+                    		<td><%=ex.getTitle() %></td>
+                    		<td><%=ex.getCourse() %></td>
+                    		<td><%=ex.getSemester() %></td>
+                    		<td><button class="btn btn-primary pull-right">View</button></td>
+                    	</tr> 
+                     </form>
+                    
                     <%
-           /*          	}
-                    } */ %>
+                     	}
+                    }  %>
                     <!-- /* ApplicationContext context = 
            			new ClassPathXmlApplicationContext("spring.xml");
                     

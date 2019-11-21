@@ -1,14 +1,15 @@
 package com.dao;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
+import org.hibernate.HibernateException;
+import org.hibernate.Query;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.orm.hibernate4.HibernateCallback;
 import org.springframework.orm.hibernate4.HibernateTemplate;
-import org.springframework.stereotype.Service;
 
+import com.dto.Exam;
 import com.dto.Question;
 
 public class QuestionDAO 
@@ -99,19 +100,37 @@ public class QuestionDAO
 //		return b;
 //	}
 //	
-//	public List<Question> getAllQuestions()
-//	{
-//		List<Question> lst = new ArrayList<Question>();
-//		
-//		try 
-//		{
-//			repository.findAll().forEach(lst::add);
-//		} 
-//		catch (Exception e) 
-//		{
-//			e.printStackTrace();
-//		}
-//		
-//		return lst;
-//	}
+	public List<Question> getAllQuestionsByExamId(int examid)
+	{
+		List<Question> lst = null;
+		
+		Exam exam = new Exam();
+		exam.setExamid(examid);
+		
+		try 
+		{
+			lst = htemplate.execute(new HibernateCallback<List<Question>>() {
+				
+				@SuppressWarnings("unchecked")
+				@Override
+				public List<Question> doInHibernate(Session session) throws HibernateException {
+					
+					Query q = session.createQuery("FROM Question Q where Q.exam=:exam");
+					
+					q.setParameter("exam", exam);
+					
+					if(q.list().size()>0)
+						return q.list();
+					else
+						return null;
+				}
+			});
+		} 
+		catch (Exception e) 
+		{
+			e.printStackTrace();
+		}
+		
+		return lst;
+	}
 }

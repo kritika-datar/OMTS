@@ -62,7 +62,6 @@ public class ExamController
 		return model;
 	}
 	
-	
 //	public String viewTeacherExams(Teacher ref, HttpServletRequest request)
 //	{
 //		HttpSession httpSession = request.getSession();

@@ -12,6 +12,7 @@ import org.springframework.orm.hibernate4.HibernateTemplate;
 
 import com.dto.Exam;
 import com.dto.Login;
+import com.dto.Student;
 
 public class ExamDAO
 {
@@ -59,25 +60,26 @@ public class ExamDAO
 		return b;
 	}
 	
-	public List<Object[]> showExamsForTeachers(String username)
+	public List<Exam> showExamsForTeachers(String username)
 	{
-		List<Object[]> lst = null;
+		List<Exam> lst = null;
 		
 		Login log = new Login();
 		log.setUsername(username);
 		
 		try 
 		{
-			lst = htemplate.execute(new HibernateCallback<List<Object[]>>() {
+			lst = htemplate.execute(new HibernateCallback<List<Exam>>() {
 				
+				@SuppressWarnings("unchecked")
 				@Override
-				public List<Object[]> doInHibernate(Session session) throws HibernateException {
+				public List<Exam> doInHibernate(Session session) throws HibernateException {
 					
-					Query q = session.createQuery("FROM Exam E Right Outer Join E.login L where L.log=:log");
+					Query q = session.createQuery("FROM Exam E where E.login=:log");
 					
 					q.setParameter("log", log);
 					
-					List<Object[]> lst = q.list();
+					List<Exam> lst = q.list();
 					
 					if(lst.size()>0)
 						return lst;
@@ -95,22 +97,48 @@ public class ExamDAO
 		return lst;
 	}
 	
-//	public List<Exam> showExamsForStudent(Student ref)
-//	{
-//		List<Exam> lst = null;
-//		
-//		try 
-//		{
-//			examRepository.findById(ref.getStudentid());
-//		} 
-//		catch (Exception e) 
-//		{
-//			e.printStackTrace();
-//		}
-//		
-//		return lst;
-//	}
-//	
+	public List<Exam> getAllNotTakenExamsForStudents(String username)
+	{
+		List<Exam> lst = null;
+		
+		Login log = new Login();
+		log.setUsername(username);
+		
+		try 
+		{
+			lst = htemplate.execute(new HibernateCallback<List<Exam>>() {
+				
+				@SuppressWarnings({ "unchecked" })
+				@Override
+				public List<Exam> doInHibernate(Session session) throws HibernateException {
+					
+					Query query = session.createQuery("FROM Student S where S.login=:log");
+					query.setParameter("log", log);
+					
+					List<Student> st = query.list();
+					int a = st.get(0).getCourse();
+					String b = st.get(0).getSemester();
+					
+					
+					Query q = session.createQuery("FROM Exam E where E.course=:a AND E.semester=:b");
+					q.setParameter("a", a);
+					q.setParameter("b", b);
+					
+					if(q.list().size()>0)
+						return q.list();
+					else
+						return null;
+				}
+			});
+		} 
+		catch (Exception e) 
+		{
+			e.printStackTrace();
+		}
+		
+		return lst;
+	}
+	
 //	public List<Exam> showAllExams()
 //	{
 //		List<Exam> lst = null;

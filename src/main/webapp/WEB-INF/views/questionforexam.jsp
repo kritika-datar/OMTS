@@ -1,7 +1,9 @@
-
-<%--<%@page import="com.dto.Question"%>
+<%@page import="com.dto.Exam"%>
+<%@page import="org.springframework.context.support.ClassPathXmlApplicationContext"%>
+<%@page import="org.springframework.context.ApplicationContext"%>
+<%@page import="com.dto.Question"%>
 <%@page import="java.util.List"%>
-<%@page import="com.dao.QuestionDAO"%>   --%>
+<%@page import="com.dao.QuestionDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 ﻿<!DOCTYPE html>
@@ -12,12 +14,12 @@
         <script src="js/jquery-3.3.1.min.js" type="text/javascript"></script>
         <meta charset="utf-8">
   
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.11.4/sweetalert2.all.js'/></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.11.4/sweetalert2.all.js'>
         <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
         
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="author" content="ScriptsBundle">
-       <title>Online Mock Test</title>
+       <title>Online Mock Test System</title>
 	<!-- =-=-=-=-=-=-= Favicons Icon =-=-=-=-=-=-= -->
 	<link rel="icon" href="<c:url value="/resources/images/favicon.ico"/>" type="image/x-icon" />
 	<!-- =-=-=-=-=-=-= Mobile Specific =-=-=-=-=-=-= -->
@@ -50,7 +52,7 @@
 	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 	
-	<!--[if lt IE 9]-->
+<!--[if lt IE 9]-->
     <script src="http://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="http://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 	<!-- [endif]-->
@@ -66,12 +68,12 @@
                 <div class="row">
                     <div class="col-lg-4 col-md-4 col-sm-6 col-xs-4">
                         <ul class="top-nav nav-left">
-                            <li><a href="index_teacher">Home</a>
+                            <li><a href="index.jsp">Home</a>
                             </li>
                             <!--li class="hidden-xs"><a href="blog.jsp">Blog</a>
                             </li//-->
-           <!--                  <li  class="hidden-xs"><a href="contact.jsp">Contact Us</a>
-                            </li>   -->
+                            <!-- <li  class="hidden-xs"><a href="contact.jsp">Contact Us</a>
+                            </li> -->
                         </ul>
                     </div>
                     <div class="col-lg-8 col-md-8 col-sm-6 col-xs-8">
@@ -82,7 +84,7 @@
                             </li-->
                             <li class="dropdown"> 
                                 <a class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown" data-animations="fadeInUp">
-                                    <img class="img-circle resize" alt="" src="resources/images/authors/13.png">
+                                    <img class="img-circle resize" alt="" src="images/authors/13.png">
                                     <span style="text-transform: lowercase" class="hidden-xs small-padding">
                                          <%
                                                                     String name=(String)session.getAttribute("username");
@@ -93,9 +95,9 @@
                                 </a>
                                 <ul class="dropdown-menu ">
                                     <!--li><a href="profile.jsp"><i class=" icon-bargraph"></i> Dashboard</a></li//-->
-                                    <li><a href="profile_setting_teacher"><i class=" icon-gears"></i> Profile Settings</a></li>
+                                    <li><a href="expert-profile-setting"><i class=" icon-gears"></i> Profile Setting</a></li>
                                     <!--li><a href="question-list.jsp"><i class="icon-heart"></i> Questions</a></li-->
-                                    <li><a href="logout"><i class="icon-lock"></i> Logout</a></li>
+                                    <li><a href="logoutcust"><i class="icon-lock"></i> Logout</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -122,20 +124,20 @@
                 <div class="navbar-collapse collapse">
                     <!-- right bar -->
                     <ul class="nav navbar-nav navbar-right">
-                        <!--li class="hidden-sm"><a href="how-work.jsp">How  It Works</a//-->
-                        </li>
+                        <!--li class="hidden-sm"><a href="how-work.jsp">How  It Works</a//
+                        </li> -->
                         <!--li><a href="listing.jsp">Browse Questions</a>
                         </li-->
                         <li class="dropdown"> <a class="dropdown-toggle " data-hover="dropdown" data-toggle="dropdown" data-animations="fadeInUp">Pages <b class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 
-                                <li><a href="404">Error Page</a>
+                                <li><a href="/404.jsp">Error Page</a>
                                 </li>
                                 
                             </ul>
                         </li>
                         <li>
-                            <div class="btn-nav"><a href="upload_exam" class="btn btn-primary btn-small navbar-btn">Create a Mock Test</a>
+                            <div class="btn-nav"><a href="" class="btn btn-primary btn-small navbar-btn">STUDENT HOME</a>
                             </div>
                         </li>
                     </ul>
@@ -165,39 +167,125 @@
                     <div class="row">
                         <!-- Content Area Bar -->
                         <div class="col-md-12 col-sm-12 col-xs-12">
-                            <div class="panel panel-primary">
+                            <!-- <div class="panel panel-primary">
                                 <div class="panel-heading">
-                                    <!-- Tabs -->
+                                    Tabs
                                     <ul class="nav panel-tabs">
-                                        <li class="active"> <a data-toggle="tab" href="#tab1"><i class="icofont icon-ribbon"></i><span class="hidden-xs">Mock Tests</span></a> 
+                                        <li class="active"> <a data-toggle="tab" href="#tab1"><i class="icofont icon-ribbon"></i><span class="hidden-xs">Unanswered Questions</span></a> 
                                         </li>
-                                        <li> <a data-toggle="tab" href="#tab2"><i class="icofont icon-layers"></i><span class="hidden-xs">Marks Report</span></a> 
+                                        <li> <a data-toggle="tab" href="#tab2"><i class="icofont icon-layers"></i><span class="hidden-xs">Answered Questions</span></a> 
                                         </li>
-                                        <li> <a data-toggle="tab" href="#tab3"><i class="icofont icon-layers"></i><span class="hidden-xs">Graphical Representation of Scores</span></a> 
+                                        <li> <a data-toggle="tab" href="#tab3"><i class="icofont icon-layers"></i><span class="hidden-xs">Incident Raised</span></a> 
                                         </li>
                                     </ul>
                                 </div>
-                            </div>
-                            <div class="panel-body">
+                            </div> -->
+<%--                             <div class="panel-body">
                                 <div class="tab-content">
-                                	<div id="tab1" class="tab-pane active">
+                                    <div id="tab1" class="tab-pane active">
                                         <!-- Question Listing -->
-                                        <jsp:include page="/WEB-INF/views/mock_tests.jsp"/>
+                                        <jsp:include page="/ShowAllQuestionsToExpert.jsp"/>
                                         <!-- Question Listing End -->
                                     </div>
-<%--                                      <div id="tab2" class="tab-pane">
+                                    <div id="tab2" class="tab-pane">
                                         <!-- Question Listing -->
-                                        <jsp:include page="marks_report"/> 
+                                        <jsp:include page="/ShowAllAnswersToExpert.jsp"/> 
                                     </div>
                                         <!-- Question Listing End -->
                                    <div id="tab3" class="tab-pane">
                                         <!-- Question Listing -->
-                                        <jsp:include page="mock_tests"/> 
+                                        <jsp:include page="/404.jsp"/> 
                                     </div>
- --%>                                    </div>
+                                    </div>
                                     
                                 </div>
-                            </div>
+ --%>                            
+ 
+             <table class="table table-striped table-hover">
+                <!-- <thead>
+                    <tr>
+                    	<th></th>
+                        <th>Exam Title</th>
+                        <th>Course</th>
+                        <th>Semester</th>
+                        <th></th>
+                    </tr>
+                </thead> -->
+                <tbody>
+                  <%
+                   	String username = (String)session.getAttribute("username");
+                  
+                  	ApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
+                  	
+                  	QuestionDAO qs = (QuestionDAO)context.getBean("questiondao");
+                    
+                  	int examid = (Integer)session.getAttribute("examid");
+                  	List<Question> lst = qs.getAllQuestionsByExamId(examid);
+                    %>
+                    <form action="viewquestionsforexam" method="post">
+                    
+                    <%
+                    if(lst != null)
+                    {
+						for(Question ex : lst)
+                    	{
+                     %>
+                     
+                    	<tr>
+                    		<label><%=ex.getQuestion() %></label>
+                    		<div class="radio">
+  								<label><input type="radio" name="<%=ex.getQuestionid() %>" value="optiona" ><%=ex.getOptiona() %></label>
+							</div>
+							<div class="radio">
+  								<label><input type="radio" name="<%=ex.getQuestionid() %>" value="optionb"><%=ex.getOptionb() %></label>
+							</div>
+							<div class="radio">
+  								<label><input type="radio" name="<%=ex.getQuestionid() %>" value="optionc"><%=ex.getOptionc() %></label>
+							</div>
+							<div class="radio">
+  								<label><input type="radio" name="<%=ex.getQuestionid() %>" value="optiond"><%=ex.getOptiond() %></label>
+							</div>
+							                    		
+                    	</tr> 
+                    
+                    <%
+                     	}
+                    }  %>
+                    
+                    <tr><button class="btn btn-primary pull-right">Submit</button></tr>
+                    <!-- <button class="btn btn-primary pull-right">View</button> -->
+                    </form>
+                    <!-- /* ApplicationContext context = 
+           			new ClassPathXmlApplicationContext("spring.xml");
+                    
+                            QuestionDAO dao = (QuestionDAO)
+                            		context.getBean("questdao");
+                            
+                            List<Question> lst = 
+dao.getAllUnansweredQuestionsForCustomer((String)
+                            session.getAttribute("userid"));
+
+                            if(lst != null)
+                            {
+                            for (Question qs : lst) { */
+                            	
+                            	
+                    %> -->
+<%--                     <tr>
+
+                        <td><%=qs.getQuestionTitle()></td>
+
+                        <td><%=qs.getQuestionDesc()></td>
+                        <td>
+                            <%=qs.getPostedDate()>
+                        </td>
+                     </tr>
+ --%>               <%--  <%}}%> --%>
+               </tbody>
+            </table>
+        </div>
+         </div>
+ 							</div>
                         </div>
                         <div class="clearfix"></div>
                     </div>
@@ -208,19 +296,19 @@
         </section>
         <!-- =-=-=-=-=-=-= Blog & News end =-=-=-=-=-=-= -->
         <!-- =-=-=-=-=-=-= Testimonials =-=-=-=-=-=-= -->
-<!--         <section data-stellar-background-ratio="0.1" class="testimonial-bg parallex">
+        <!-- <section data-stellar-background-ratio="0.1" class="testimonial-bg parallex">
 			<div class="container">
-	 -->			<!-- Row -->
-		<!-- 		<div class="row">
-			 -->		<!-- Blog Grid -->
-		<!-- 			<div class="col-md-8 ">
+				Row
+				<div class="row">
+					Blog Grid
+					<div class="col-md-8 ">
 						<div id="owl-slider" class="happy-client">
 							<div class="item"> <i class="fa fa-quote-left"> </i>
 								<p>Expert Messaging System is a question and answer site for professional and enthusiasts. It features questions and answers on a wide variety of topics ranging from music , sports , business , art , cookery , health etc. The website serves as a platform for users to ask questions and assigned experts for the topics to answer those questions.</p>
 								<div class="client-info-wrap clearfix">
 									<div class="client-img">
-			 -->							<!--img class="img-circle" src="../../../theemon.com/d/designagency/LivePreview/assets/images/client-img-two.jpg" alt="" /-->
-<!-- 									</div>
+										img class="img-circle" src="../../../theemon.com/d/designagency/LivePreview/assets/images/client-img-two.jpg" alt="" /
+									</div>
 									<div class="client-info"> <strong>Expert Messaging</strong>
 									</div>
 								</div>
@@ -229,17 +317,17 @@
 								<p>Expert Messaging System is a question and answer site for professional and enthusiasts. It features questions and answers on a wide variety of topics ranging from music , sports , business , art , cookery , health etc. The website serves as a platform for users to ask questions and assigned experts for the topics to answer those questions.</p>
 								<div class="client-info-wrap clearfix">
 									<div class="client-img">
-	 -->									<!--img class="img-circle" src="../../../theemon.com/d/designagency/LivePreview/assets/images/client-img-two.jpg" alt="" /-->
-		<!--							</div>
+										img class="img-circle" src="../../../theemon.com/d/designagency/LivePreview/assets/images/client-img-two.jpg" alt="" /
+									</div>
 									<div class="client-info"> <strong>Expert Messaging</strong> 
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-	-->				<!-- Blog Grid -->
-					<!-- Blog Grid -->
-		<!-- 			<div class="col-md-4 no-padding">
+					Blog Grid
+					Blog Grid
+					<div class="col-md-4 no-padding">
 						<div class="success-stories">
 							<div class="main-heading text-center">
 								<h2>Admin Detail</h2>
@@ -248,21 +336,21 @@
 							</div>
 						</div>
 					</div>
-			 -->	<!-- Blog Grid -->
-		<!-- 			<div class="clearfix"></div>
+					Blog Grid
+					<div class="clearfix"></div>
 				</div>
- -->				<!-- Row End -->
- 	<!-- 		</div>
-		 -->	<!-- end container -->
-<!-- 		</section>
+				Row End
+			</div>
+			end container
+		</section>
         
-    </div>
-  -->  
+     --></div>
+    
     <!--Footer Bottom-->
     <div class="footer-copyright">
         <div class="auto-container clearfix">
             <!--Copyright-->
-            <div class="copyright text-center">Copyright 2019 &copy; Theme Created By <a>IIPS DAVV</a> All Rights Reserved</div>
+            <div class="copyright text-center">Copyright 2019 &copy; Theme Created By <a>Ypslison IT Solution</a> All Rights Reserved</div>
         </div>
     </div>
 </footer>

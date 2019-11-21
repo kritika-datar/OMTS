@@ -84,7 +84,7 @@
                                     <img class="img-circle resize" alt="" src="resources/images/authors/13.png">
                                     <span style="text-transform: lowercase" class="hidden-xs small-padding">
                                          <%
-                                                                    String name=(String)session.getAttribute("userid");
+                                                                    String name=(String)session.getAttribute("username");
                                                                     out.print(name);
                                                                %>
                                         <i class="fa fa-caret-down"></i>
@@ -181,8 +181,8 @@
                                 <div class="tab-content">
                                      <div id="tab1" class="tab-pane active">
                                         <!-- Question Listing -->
-                             <%--            <jsp:include page="tests_not_taken"/>
-                              --%>           <!-- Question Listing End -->
+                                         <jsp:include page="/WEB-INF/views/tests_not_taken.jsp"/>
+                                         <!-- Question Listing End -->
                                     </div>
                                     <div id="tab2" class="tab-pane">
                                         <!-- Question Listing -->

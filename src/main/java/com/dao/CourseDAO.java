@@ -3,8 +3,12 @@ package com.dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.HibernateException;
+import org.hibernate.Query;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.orm.hibernate4.HibernateCallback;
 import org.springframework.orm.hibernate4.HibernateTemplate;
 import org.springframework.stereotype.Service;
 
@@ -36,19 +40,32 @@ public class CourseDAO
 		this.sfact = sfact;
 	}
 
-//	public List<Course> getAllCourses()
-//	{
-//		List<Course> lst = new ArrayList<Course>();
-//		
-//		try 
-//		{
-//			courseRepository.findAll().forEach(lst::add);;
-//		} 
-//		catch (Exception e) 
-//		{
-//			e.printStackTrace();
-//		}
-//		
-//		return lst;
-//	}
+	public List<Course> getAllCourses()
+	{
+		List<Course> lst = null;
+		
+		try 
+		{
+			lst = htemplate.execute(new HibernateCallback<List<Course>>() {
+				
+				@SuppressWarnings("unchecked")
+				@Override
+				public List<Course> doInHibernate(Session session) throws HibernateException {
+					
+					Query q = session.createQuery("FROM Course");
+					
+					if(q.list().size()>0)
+						return q.list();
+					else
+						return null;
+				}
+			});
+		} 
+		catch (Exception e) 
+		{
+			e.printStackTrace();
+		}
+		
+		return lst;
+	}
 }

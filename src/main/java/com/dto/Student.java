@@ -32,10 +32,10 @@ public class Student
 	private String studname;
 		
 	@Column(name = "course")
-	private String course;
+	private int course;
 	
 	@Column(name = "semester")
-	private int semester;
+	private String semester;
 	
 	@OneToMany(mappedBy = "student", fetch = FetchType.EAGER)
 	private Set<Answer> answers;
@@ -99,19 +99,19 @@ public class Student
 		this.studname = studname;
 	}
 
-	public String getCourse() {
+	public int getCourse() {
 		return course;
 	}
 
-	public void setCourse(String course) {
+	public void setCourse(int course) {
 		this.course = course;
 	}
 
-	public int getSemester() {
+	public String getSemester() {
 		return semester;
 	}
 
-	public void setSemester(int semester) {
+	public void setSemester(String semester) {
 		this.semester = semester;
 	}
 

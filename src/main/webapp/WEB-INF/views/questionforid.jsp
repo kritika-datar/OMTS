@@ -1,7 +1,7 @@
 <%@page import="org.springframework.context.support.ClassPathXmlApplicationContext"%>
 <%@page import="org.springframework.context.ApplicationContext"%>
-<%@page import="com.dao.ExamDAO"%>
-<%@page import="com.dto.Exam"%>
+<%@page import="com.dto.Question"%>
+<%@page import="com.dao.QuestionDAO"%>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -13,7 +13,7 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <title>Tests not Taken</title>
+        <title>JSP Page</title>
         
         <style>
 body {font-family: Arial, Helvetica, sans-serif;}
@@ -65,7 +65,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
             <div class="table-title">
                 <div class="row">
                     <div class="col-sm-6">
-                        <h2><b> Tests</b></h2>
+                        <h2> Questions For You</b></h2>
                     </div>
                 </div>
             </div>
@@ -73,47 +73,48 @@ body {font-family: Arial, Helvetica, sans-serif;}
                 <thead>
                     <tr>
                         <th>Title</th>
-<!--                         <th>Description</th>
+                        <th>Description</th>
                         <th>Your Answer</th>
- -->                        <th>Action</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                     <%
-                    	ApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
+                    <%
+                    ApplicationContext context = 
+           			new ClassPathXmlApplicationContext("spring.xml");
                     
-	                    ExamDAO dao = (ExamDAO)context.getBean("examdao");
-	                    String username = (String)session.getAttribute("username");
-                      
-	                    List<Exam> lst = dao.getAllNotTakenExamsForStudents((String)session.getAttribute("examid"));
-
+                            QuestionDAO dao = (QuestionDAO)
+                            		context.getBean("questiondao");
+                            
+                            int examid = (Integer)session.getAttribute("examid");
+                            List<Question> lst = dao.getAllQuestionsByExamId(examid);
+                            		
                             if(lst != null)
                             {
-                            for (Exam qs : lst) {
+                            	for (Question qs : lst) {
 
                     %>
                     <tr>
-                    	<form action="takeexam" method="post">
-                    		<div class="form-group">
-                  				<select name="question">
-                  				
-                  				</select>
-                  			</div>
-                        	<td><%=qs.getTitle() %></td>
-<%-- 	                        <td><%=qs.getQuestionDesc()%></td>
- --%>                        	
- 							<td><input type="hidden" name="examid" value="<%=qs.getExamid()%>"/>
-<%--                             <input type="hidden" name="expertId" value="<%=qs.getExp().getId()%>"/>
+                        <td><%=qs.getQuestion() %></td>
+
+                        <td><%=qs.getOptiona() %></td>
+                        <td><%=qs.getOptionb() %></td>
+                        <td><%=qs.getOptionc() %></td>
+                        <td><%=qs.getOptiond() %></td>
+<%--                         <td>
+                            <form action="addanswer" method="post">
+                            <input type="hidden" name="questionId" value="<%=qs.getId()%>"/>
+                            <input type="hidden" name="expertId" value="<%=qs.getExp().getId()%>"/>
                             <textarea rows="4" cols="50" name="ans"></textarea>
- --%>                        </td>
-                        <td><button class="btn btn-primary pull-right">Take Exam</button></td>							
-<%--                         <input type="hidden" id="hid_ques_id<%=qs.getId()%>" value="<%=qs.getId()%>"/>
- --%>                        </form>
-<%--                         <button id="myBtn<%=qs.getId()%>" onclick="openMyDialog(<%=qs.getId()%>)">Raise Complaint</button>
- --%>                        
-                     </tr>
-                 <%}}%>
-                 </tbody>
+                        </td>
+                        <td><input type="submit" value="Submit Your Answer"/> &nbsp;&nbsp;&nbsp;							
+                        <input type="hidden" id="hid_ques_id<%=qs.getId()%>" value="<%=qs.getId()%>"/>
+                        </form>
+                        <button id="myBtn<%=qs.getId()%>" onclick="openMyDialog(<%=qs.getId()%>)">Raise Complaint</button>
+                        </td>
+ --%>                    </tr>
+                <%}}%>
+                </tbody>
             </table>
             <div class="clearfix">
                 <ul class="pagination">

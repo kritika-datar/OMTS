@@ -1,7 +1,8 @@
-<%-- <%@page import="org.springframework.context.support.ClassPathXmlApplicationContext"%>
+<%@page import="com.dao.CourseDAO"%>
+<%@page import="com.dto.Course"%>
+<%@page import="org.springframework.context.support.ClassPathXmlApplicationContext"%>
 <%@page import="org.springframework.context.ApplicationContext"%>
-<%@page import="com.dto.QuestionCategory"%>
- --%><%@page import="org.springframework.beans.factory.annotation.Autowired"%>
+<%@page import="org.springframework.beans.factory.annotation.Autowired"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List" %>
 <%-- <%@page import="com.dao.QuestionCategoryDAO"%>
@@ -111,7 +112,7 @@
 					<li><a href="index_teacher">Home</a>
 					</li>
 					<!--li class="hidden-xs"><a href="blog.jsp">Blog</a//-->
-					</li>
+					<!-- </li> -->
 				<!-- 	<li  class="hidden-xs"><a href="contact.jsp">Contact Us</a>
 					</li>
 				 --></ul>
@@ -226,15 +227,13 @@
                 </div>
                 <div class="form-group">
                   <label>Course</label>
-                  <select id="qcat" class="questions-category form-control" name="course">
+                  <select required id="qcat" class="questions-category form-control" name="course">
                       <option value="0">Select Course</option>
-<%--                       <%
-//                      		@Autowired
- 							CourseService courseService = new CourseService();
+                      <%
+							ApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
+                      		CourseDAO cdao = (CourseDAO)context.getBean("coursedao");
                       		
-                      		//courseService = null;
-                      		
-							List<Course> lst = courseService.getAllCourses();
+							List<Course> lst = cdao.getAllCourses();
                             
                             if(lst != null)
                             {
@@ -246,11 +245,11 @@
                                  }
                             }
                        %>    
- --%>                  </select>
+                  </select>
                 </div>
                 <div class="form-group">
                   <label>Semester</label>
-                  <select required class="questions-category form-control" name="semester" id="subcat">
+                  <select required class="questions-category form-control" name="semester">  <!-- id="subcat" -->
                     <option value="0">Select Semester</option>
                     <option value="I">I</option>
                     <option value="II">II</option>
