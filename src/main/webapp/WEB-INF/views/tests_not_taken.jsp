@@ -84,8 +84,10 @@ body {font-family: Arial, Helvetica, sans-serif;}
                     
 	                    ExamDAO dao = (ExamDAO)context.getBean("examdao");
 	                    String username = (String)session.getAttribute("username");
-                      
-	                    List<Exam> lst = dao.getAllNotTakenExamsForStudents((String)session.getAttribute("examid"));
+//                      	out.println(username);
+						Integer a = (Integer)session.getAttribute("examid");
+//						out.println(a);
+	                    List<Exam> lst = dao.getAllNotTakenExamsForStudents(username);
 
                             if(lst != null)
                             {
@@ -93,11 +95,11 @@ body {font-family: Arial, Helvetica, sans-serif;}
 
                     %>
                     <tr>
-                    	<form action="takeexam" method="post">
+                    	<form action="questionforexam" method="post">
                     		<div class="form-group">
-                  				<select name="question">
+                  				<!-- <select name="question">
                   				
-                  				</select>
+                  				</select> -->
                   			</div>
                         	<td><%=qs.getTitle() %></td>
 <%-- 	                        <td><%=qs.getQuestionDesc()%></td>
@@ -108,9 +110,9 @@ body {font-family: Arial, Helvetica, sans-serif;}
  --%>                        </td>
                         <td><button class="btn btn-primary pull-right">Take Exam</button></td>							
 <%--                         <input type="hidden" id="hid_ques_id<%=qs.getId()%>" value="<%=qs.getId()%>"/>
- --%>                        </form>
+ --%>                       
 <%--                         <button id="myBtn<%=qs.getId()%>" onclick="openMyDialog(<%=qs.getId()%>)">Raise Complaint</button>
- --%>                        
+ --%>                        </form>
                      </tr>
                  <%}}%>
                  </tbody>

@@ -36,17 +36,17 @@ public class Exam implements java.io.Serializable
 	@Column(name = "qdoc")
 	private String qdoc;
 
-	@OneToMany(mappedBy = "exam", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "exam", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private Set<Report> reports;
 	
-	@OneToMany(mappedBy = "exam", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "exam", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private Set<Question> questions;
 	
 //	@Column(name = "username", length = 255)
 //	private String username;
 		
 //	@Cascade(CascadeType.ALL)
-	@ManyToOne //(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "username")
 	private Login login;
 	

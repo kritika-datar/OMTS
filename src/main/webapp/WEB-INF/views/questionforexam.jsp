@@ -68,7 +68,7 @@
                 <div class="row">
                     <div class="col-lg-4 col-md-4 col-sm-6 col-xs-4">
                         <ul class="top-nav nav-left">
-                            <li><a href="index.jsp">Home</a>
+                            <li><a href="index_student">Home</a>
                             </li>
                             <!--li class="hidden-xs"><a href="blog.jsp">Blog</a>
                             </li//-->
@@ -97,7 +97,7 @@
                                     <!--li><a href="profile.jsp"><i class=" icon-bargraph"></i> Dashboard</a></li//-->
                                     <li><a href="expert-profile-setting"><i class=" icon-gears"></i> Profile Setting</a></li>
                                     <!--li><a href="question-list.jsp"><i class="icon-heart"></i> Questions</a></li-->
-                                    <li><a href="logoutcust"><i class="icon-lock"></i> Logout</a></li>
+                                    <li><a href="logout"><i class="icon-lock"></i> Logout</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -167,27 +167,27 @@
                     <div class="row">
                         <!-- Content Area Bar -->
                         <div class="col-md-12 col-sm-12 col-xs-12">
-                            <!-- <div class="panel panel-primary">
+                            <div class="panel panel-primary">
                                 <div class="panel-heading">
                                     Tabs
                                     <ul class="nav panel-tabs">
-                                        <li class="active"> <a data-toggle="tab" href="#tab1"><i class="icofont icon-ribbon"></i><span class="hidden-xs">Unanswered Questions</span></a> 
+                                        <li class="active"> <a data-toggle="tab" href="#tab1"><i class="icofont icon-ribbon"></i><span class="hidden-xs">Question Paper</span></a> 
                                         </li>
-                                        <li> <a data-toggle="tab" href="#tab2"><i class="icofont icon-layers"></i><span class="hidden-xs">Answered Questions</span></a> 
+<!--                                         <li> <a data-toggle="tab" href="#tab2"><i class="icofont icon-layers"></i><span class="hidden-xs">Answered Questions</span></a> 
                                         </li>
                                         <li> <a data-toggle="tab" href="#tab3"><i class="icofont icon-layers"></i><span class="hidden-xs">Incident Raised</span></a> 
                                         </li>
-                                    </ul>
+ -->                                    </ul>
                                 </div>
-                            </div> -->
-<%--                             <div class="panel-body">
+                            </div>
+                             <div class="panel-body">
                                 <div class="tab-content">
                                     <div id="tab1" class="tab-pane active">
                                         <!-- Question Listing -->
-                                        <jsp:include page="/ShowAllQuestionsToExpert.jsp"/>
+                                        <jsp:include page="/WEB-INF/views/showquestionstostudents.jsp"/>
                                         <!-- Question Listing End -->
                                     </div>
-                                    <div id="tab2" class="tab-pane">
+                                  <%--    <div id="tab2" class="tab-pane">
                                         <!-- Question Listing -->
                                         <jsp:include page="/ShowAllAnswersToExpert.jsp"/> 
                                     </div>
@@ -195,11 +195,11 @@
                                    <div id="tab3" class="tab-pane">
                                         <!-- Question Listing -->
                                         <jsp:include page="/404.jsp"/> 
-                                    </div>
+                                    </div> --%>
                                     </div>
                                     
                                 </div>
- --%>                            
+                             
  
              <table class="table table-striped table-hover">
                 <!-- <thead>
@@ -211,7 +211,7 @@
                         <th></th>
                     </tr>
                 </thead> -->
-                <tbody>
+                <%-- <tbody>
                   <%
                    	String username = (String)session.getAttribute("username");
                   
@@ -222,7 +222,7 @@
                   	int examid = (Integer)session.getAttribute("examid");
                   	List<Question> lst = qs.getAllQuestionsByExamId(examid);
                     %>
-                    <form action="viewquestionsforexam" method="post">
+                    <form action="submitexam" method="post">
                     
                     <%
                     if(lst != null)
@@ -232,6 +232,7 @@
                      %>
                      
                     	<tr>
+                    		<input type="hidden" name="qid" value="<%=ex.getQuestionid() %>">
                     		<label><%=ex.getQuestion() %></label>
                     		<div class="radio">
   								<label><input type="radio" name="<%=ex.getQuestionid() %>" value="optiona" ><%=ex.getOptiona() %></label>
@@ -253,8 +254,10 @@
                     }  %>
                     
                     <tr><button class="btn btn-primary pull-right">Submit</button></tr>
+                    
+                    </form> --%>
                     <!-- <button class="btn btn-primary pull-right">View</button> -->
-                    </form>
+                 
                     <!-- /* ApplicationContext context = 
            			new ClassPathXmlApplicationContext("spring.xml");
                     
@@ -350,7 +353,7 @@ dao.getAllUnansweredQuestionsForCustomer((String)
     <div class="footer-copyright">
         <div class="auto-container clearfix">
             <!--Copyright-->
-            <div class="copyright text-center">Copyright 2019 &copy; Theme Created By <a>Ypslison IT Solution</a> All Rights Reserved</div>
+            <div class="copyright text-center">Copyright 2019 &copy; Theme Created By <a>IIPS DAVV</a> All Rights Reserved</div>
         </div>
     </div>
 </footer>

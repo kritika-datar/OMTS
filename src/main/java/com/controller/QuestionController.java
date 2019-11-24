@@ -34,11 +34,27 @@ public class QuestionController
 //			return "";
 	}
 	
-	@RequestMapping(value = "/takeexam", method = RequestMethod.POST)
-	public String takeexam(@RequestParam(name = "examid")int examid, HttpServletRequest request)
+//	@RequestMapping(value = "/takeexam", method = RequestMethod.POST)
+//	public String takeexam(@RequestParam(name = "examid")int examid, HttpServletRequest request)
+//	{
+//		HttpSession httpSession = request.getSession(true);
+//		httpSession.setAttribute("examid", examid);
+//		String username = (String)httpSession.getAttribute("username");
+//		
+////		ModelAndView model = new ModelAndView();
+////		model.addObject("exams", qdao.getAllQuestionsByExamId(examid));
+////		model.setViewName("mock_tests");
+//		
+//		return "questionforexam";
+//	}
+	
+	@RequestMapping(value = "/questionforexam", method = RequestMethod.POST)
+	public String questionforexam(@RequestParam(name = "examid")int examid, HttpServletRequest request)
 	{
 		HttpSession httpSession = request.getSession(true);
 		httpSession.setAttribute("examid", examid);
+		int e = (Integer)httpSession.getAttribute("examid");
+		System.out.println(e);
 		String username = (String)httpSession.getAttribute("username");
 		
 //		ModelAndView model = new ModelAndView();

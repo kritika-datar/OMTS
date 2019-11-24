@@ -1,12 +1,17 @@
 package com.dto;
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -34,13 +39,15 @@ public class Question
 	@Column(name = "optiond")
 	private String optiond;
 	
-	@ManyToOne
+	@Column(name = "correctanswer")
+	private String correctanswer;
+	
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "examid")
 	private Exam exam;
 	
-	@OneToOne
-	@JoinColumn(name = "answerid")
-	private Answer answer;
+	@OneToMany(mappedBy = "question", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private Set<Answer> answer;
 
 	public Question() {
 		super();
@@ -87,11 +94,11 @@ public class Question
 		this.exam = exam;
 	}
 
-	public Answer getAnswer() {
+	public Set<Answer> getAnswer() {
 		return answer;
 	}
 
-	public void setAnswer(Answer answer) {
+	public void setAnswer(Set<Answer> answer) {
 		this.answer = answer;
 	}
 
@@ -109,5 +116,13 @@ public class Question
 
 	public void setQuestion(String question) {
 		this.question = question;
+	}
+
+	public String getCorrectanswer() {
+		return correctanswer;
+	}
+
+	public void setCorrectanswer(String correctanswer) {
+		this.correctanswer = correctanswer;
 	}
 }

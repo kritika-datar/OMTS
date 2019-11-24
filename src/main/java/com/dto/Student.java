@@ -2,6 +2,7 @@ package com.dto;
 
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -37,13 +38,13 @@ public class Student
 	@Column(name = "semester")
 	private String semester;
 	
-	@OneToMany(mappedBy = "student", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "student", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private Set<Answer> answers;
 	
-	@OneToMany(mappedBy = "student",fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "student",fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private Set<Report> reports;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "username")
 	private Login login;
 	

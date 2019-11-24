@@ -1,5 +1,6 @@
 package com.dto;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,12 +19,16 @@ public class Answer
 	@Column(name = "answerid")
 	private int answerid;
 	
-	@Column(name = "answer")
-	private String answer;
+	@Column(name = "recordedanswer")
+	private String recordedanswer;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "studentid")
 	private Student student;
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "questionid")
+	private Question question;
 
 	public Answer() {
 		super();
@@ -38,12 +43,12 @@ public class Answer
 		this.answerid = answerid;
 	}
 
-	public String getAnswer() {
-		return answer;
+	public String getRecordedanswer() {
+		return recordedanswer;
 	}
 
-	public void setAnswer(String answer) {
-		this.answer = answer;
+	public void setRecordedanswer(String recordedanswer) {
+		this.recordedanswer = recordedanswer;
 	}
 
 	public Student getStudent() {
@@ -52,5 +57,13 @@ public class Answer
 
 	public void setStudent(Student student) {
 		this.student = student;
+	}
+
+	public Question getQuestion() {
+		return question;
+	}
+
+	public void setQuestion(Question question) {
+		this.question = question;
 	}
 }

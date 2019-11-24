@@ -2,6 +2,7 @@ package com.dto;
 
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -26,13 +27,13 @@ public class Login implements java.io.Serializable
 	@Column(name = "password", length = 45)
 	private String password;
 	
-	@OneToMany(mappedBy = "login", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "login", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private Set<Student> students;
 	
-	@OneToMany(mappedBy = "login", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "login", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private Set<Teacher> teachers;
 	
-	@OneToMany(mappedBy = "login", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "login", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private Set<Exam> exams;
 
 	public Login() {
