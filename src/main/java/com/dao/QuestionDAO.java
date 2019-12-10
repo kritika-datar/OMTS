@@ -157,7 +157,7 @@ public class QuestionDAO
 			PreparedStatement ps=con.prepareStatement(query);
 			ps.setInt(1,examid);
 			ResultSet rs=ps.executeQuery();
-			ResultSet rs1=null;
+//			ResultSet rs1=null;
 			
 			if(rs.next()){
 				rs.absolute(Integer.parseInt(question_no));
@@ -170,23 +170,23 @@ public class QuestionDAO
 //				rs1=ps.executeQuery();
 				
 //				if(rs.next()){
-					rs1.absolute(1);
+//					rs1.absolute(1);
 					obj.put("a", rs.getString("optiona"));
 					
-					rs1.absolute(2);
+//					rs1.absolute(2);
 					obj.put("b", rs.getString("optionb"));
 					
-					rs1.absolute(3);
+//					rs1.absolute(3);
 					obj.put("c", rs.getString("optionc"));
 					
-					rs1.absolute(4);
+//					rs1.absolute(4);
 					obj.put("d", rs.getString("optiond"));
 				}
 //			}
 			
 			ps.close();
 			rs.close();
-			rs1.close();
+//			rs1.close();
 			con.close();
 		}catch(Exception e){
 			e.printStackTrace();

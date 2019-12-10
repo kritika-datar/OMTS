@@ -1,6 +1,13 @@
 package com.dao;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -37,28 +44,59 @@ public class AnswerDAO
 		this.sfact = sfact;
 	}
 
-	public boolean saveAnswer(Answer ref)
+	public static void saveAnswers(int examid, String id, LinkedHashMap lhm)
 	{
-		boolean b = false;
-		Session s = sfact.openSession();
-		Transaction tr = s.beginTransaction();
+		String query="insert into answer(recordedanswer, studentid, questionid, examid) values(?,?,?,?)";
 		
-		try
-		{
-			s.save(ref);
+		String URL="localhost:3306/";
+		String DATABASE_NAME="omts";
+		String USERNAME="root";
+		String PASSWORD="root";
+		
+		Connection con = null;
+		try{
+			Class.forName("com.mysql.jdbc.Driver");
+			con=DriverManager.getConnection("jdbc:mysql://"+URL+DATABASE_NAME,USERNAME,PASSWORD);
+
+			PreparedStatement ps;
+			Set set=lhm.entrySet();
+			Iterator it=set.iterator();
 			
-			tr.commit();
-			s.close();
+			while(it.hasNext()){
+				Map.Entry m=(Map.Entry)it.next();
+				
+				ps=con.prepareStatement(query);
+				ps.setString(1,m.getValue().toString());
+				ps.setString(2, id);
+				ps.setString(3,m.getKey().toString());
+				ps.setInt(4, examid);
+				
+				ps.executeUpdate();
+			}
 			
-			b = true;
-		}
-		catch (Exception e) 
-		{
+		}catch(Exception e){
 			e.printStackTrace();
-			return false;
 		}
-		
-		return b;
+//		boolean b = false;
+//		Session s = sfact.openSession();
+//		Transaction tr = s.beginTransaction();
+//		
+//		try
+//		{
+//			s.save(ref);
+//			
+//			tr.commit();
+//			s.close();
+//			
+//			b = true;
+//		}
+//		catch (Exception e) 
+//		{
+//			e.printStackTrace();
+//			return false;
+//		}
+//		
+//		return b;
 	}
 	
 	public List<Answer> getAllAnswersByStudent(String rollno)

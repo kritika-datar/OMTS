@@ -20,7 +20,7 @@
 <!--         <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
  -->        <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 <!--         <script src="/WEB-INF/views/jquery-1.11.3.js"></script>
- -->        <title>JSP Page</title>
+ -->        <title>Show Questions to Students</title>
     </head>
     <body onload="startTimer()">
          <div class="container">
@@ -53,6 +53,8 @@
                     
                   	int examid = (Integer)session.getAttribute("examid");
                   	List<Question> lst = qs.getAllQuestionsByExamId(examid);
+                  	int max_questions = 2;
+                  	System.out.print(examid);
                     
                     
                 	/* ApplicationContext context = 
@@ -83,9 +85,9 @@ List<Object[]> anslist = ado.getAllQuestionsAndAnswersByExpert(
                      <script>
     var question_no=1;
     var question_id=0;
-    var max_questions=15;
+    var max_questions=<%=max_questions%>;
     
-    var timer=15;
+    var timer=1200;
     var min=0;
     var sec=0;
     
@@ -96,7 +98,7 @@ List<Object[]> anslist = ado.getAllQuestionsAndAnswersByExpert(
     	sec=parseInt(timer%60);
 
     	if(timer<1){
-            window.location="/OMTS/src/main/webapp/WEB-INF/views/resultDAO.jsp";
+            window.location="resultDAO";
         }
     		
     	document.getElementById("time").innerHTML = "<b>Time Left: </b>"+min.toString()+":"+sec.toString();
@@ -107,7 +109,7 @@ List<Object[]> anslist = ado.getAllQuestionsAndAnswersByExpert(
     
     $(document).ready(function(){
     	console.log( "ready!" );
-        $.get('/src/main/webapp/WEB-INF/views/getQuestionDAO.jsp?question_no='+question_no+'&req=first',function(data,status){
+        $.get('getQuestionDAO?question_no='+question_no+'&req=first',function(data,status){
             var obj=JSON.parse(data);
             question_id=obj.id;
             $('#question').html('<b>Question '+question_no+': </b><br/>'+obj.question);
@@ -115,7 +117,7 @@ List<Object[]> anslist = ado.getAllQuestionsAndAnswersByExpert(
             $('#b').html('<b>B:</b><input type="radio" name="answer" value="B">'+obj.b);
             $('#c').html('<b>C:</b><input type="radio" name="answer" value="C">'+obj.c);
             $('#d').html('<b>D:</b><input type="radio" name="answer" value="D">'+obj.d);
-            $('#qno').html(' '+question_no);
+            $('#qno').html(' '+<%=examid%>);
         });
         
         if(question_no==1){
@@ -149,7 +151,7 @@ List<Object[]> anslist = ado.getAllQuestionsAndAnswersByExpert(
         	}
         	else{
         	question_no++;
-        	$.get('getQuestionDAO.jsp?question_no='+question_no+'&question_id='+question_id+'&answer='+answer,function(data,status){
+        	$.get('getQuestDAO?question_no='+question_no+'&question_id='+question_id+'&answer='+answer,function(data,status){
                 var obj=JSON.parse(data);
                 question_id=obj.id;
                 $('#question').html('<b>Question '+question_no+': </b><br/>'+obj.question);
@@ -190,8 +192,8 @@ List<Object[]> anslist = ado.getAllQuestionsAndAnswersByExpert(
                    alert("Please select answer for this question");
                }
                else{
-            	   $.post('getQuestionDAO.jsp?question_no='+question_no+'&question_id='+question_id+'&answer='+answer+"&req=last");
-            	   window.location='resultDAO.jsp';
+            	   $.post('getQDAO?question_no='+question_no+'&question_id='+question_id+'&answer='+answer+"&req=last");
+            	   window.location='resultDAO';
                }
         });
         
@@ -200,7 +202,7 @@ List<Object[]> anslist = ado.getAllQuestionsAndAnswersByExpert(
             question_no--;
             var answer=$('input[name=answer]:checked').val();
             
-            $.get('getQuestionDAO.jsp?question_no='+question_no+'&question_id='+question_id+'&answer='+answer,function(data,status){
+            $.get('getQuestDAO?question_no='+question_no+'&question_id='+question_id+'&answer='+answer,function(data,status){
                 var obj=JSON.parse(data);
                 question_id=obj.id;
                 $('#question').html('<b>Question '+question_no+': </b><br/>'+obj.question);
@@ -300,10 +302,9 @@ List<Object[]> anslist = ado.getAllQuestionsAndAnswersByExpert(
                         <%} %>
                     </tr>
                 <%}}%> --%>
-
                 </tbody>
             </table>
-            <div class="clearfix">
+            <!-- <div class="clearfix">
                 <ul class="pagination">
                     <li class="page-item disabled"><a href="#">Previous</a></li>
                     <li class="page-item active"><a href="#" class="page-link">1</a></li>
@@ -312,10 +313,8 @@ List<Object[]> anslist = ado.getAllQuestionsAndAnswersByExpert(
                     <li class="page-item"><a href="#" class="page-link">4</a></li>
                     <li class="page-item"><a href="#" class="page-link">Next</a></li>
                 </ul>
-            </div>
+            </div> -->
         </div>
     </div>
-    
-        
     </body>
 </html>

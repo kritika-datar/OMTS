@@ -42,6 +42,9 @@ public class Exam implements java.io.Serializable
 	@OneToMany(mappedBy = "exam", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private Set<Question> questions;
 	
+	@OneToMany(mappedBy = "exam", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	private Set<Answer> answers;
+	
 //	@Column(name = "username", length = 255)
 //	private String username;
 		
@@ -53,6 +56,14 @@ public class Exam implements java.io.Serializable
 	public Exam() {
 		super();
 		// TODO Auto-generated constructor stub
+	}
+
+	public Set<Answer> getAnswers() {
+		return answers;
+	}
+
+	public void setAnswers(Set<Answer> answers) {
+		this.answers = answers;
 	}
 
 	public int getExamid() {

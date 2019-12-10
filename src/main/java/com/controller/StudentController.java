@@ -16,20 +16,20 @@ public class StudentController
 //	@Autowired
 //	public StudentDAO service;
 	
-//	@RequestMapping(value = "/index_student")
-//	public String studentLogin(Student ref, HttpServletRequest request)
-//	{
-//		HttpSession httpSession = request.getSession(true);
-//		
+	@RequestMapping(value = "/index_student")
+	public String studentLogin(HttpServletRequest request)
+	{
+		HttpSession httpSession = request.getSession(true);
+		
 //		if(service.validateStudent(ref))
 //		{
 //			httpSession.setAttribute("username", ref.getStudname());
-//			return "index_student";
+			return "index_student";
 //		}
 //		else
 //		{
 //			return "login_failure";
 //		}
 //	}
-//
+	}
 }

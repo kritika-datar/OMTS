@@ -63,4 +63,37 @@ public class QuestionController
 		
 		return "questionforexam";
 	}
+	
+	@RequestMapping(value = "/getQuestionDAO", method = RequestMethod.GET)
+	public String getQuestionDAO(@RequestParam(name = "question_no")int question_no, @RequestParam(name = "req")String req, HttpServletRequest request)
+	{
+		HttpSession httpSession = request.getSession(true);
+		httpSession.setAttribute("question_no", question_no);
+		httpSession.setAttribute("req", req);
+		
+		return "getQuestionDAO";
+	}
+	
+	@RequestMapping(value = "/getQuestDAO", method = RequestMethod.GET)
+	public String getQuestDAO(@RequestParam(name = "question_no")int question_no, @RequestParam(name = "question_id")int question_id, @RequestParam(name = "answer")String answer, HttpServletRequest request)
+	{
+		HttpSession httpSession = request.getSession(true);
+		httpSession.setAttribute("question_no", question_no);
+		httpSession.setAttribute("question_id", question_id);
+		httpSession.setAttribute("answer", answer);
+		
+		return "getQuestionDAO";
+	}
+	
+	@RequestMapping(value = "/getQDAO", method = RequestMethod.GET)
+	public String getQDAO(@RequestParam(name = "question_no")int question_no, @RequestParam(name = "question_id")int question_id, @RequestParam(name = "answer")String answer, @RequestParam(name = "req")String req, HttpServletRequest request)
+	{
+		HttpSession httpSession = request.getSession(true);
+		httpSession.setAttribute("question_no", question_no);
+		httpSession.setAttribute("question_id", question_id);
+		httpSession.setAttribute("answer", answer);
+		httpSession.setAttribute("req", req);
+		
+		return "getQuestionDAO";
+	}
 }

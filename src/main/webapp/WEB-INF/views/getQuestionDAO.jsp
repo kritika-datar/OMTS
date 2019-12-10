@@ -10,7 +10,7 @@ String req=request.getParameter("req");
 String set=(String)session.getAttribute("set");
 String email=(String)session.getAttribute("email");
 int examid = (Integer)session.getAttribute("examid");
-
+//out.println(examid);
 ApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
 QuestionDAO qdao = (QuestionDAO)context.getBean("questiondao");
 
@@ -18,6 +18,7 @@ if(req!=null){
 	if(req.equals("first")){
 	String result=qdao.getQuestion(question_no,examid);
 	out.print(result);
+//	out.print(examid);
 	}
 	else{
 		   String question_id=request.getParameter("question_id");

@@ -29,6 +29,10 @@ public class Answer
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "questionid")
 	private Question question;
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "examid")
+	private Exam exam;
 
 	public Answer() {
 		super();
@@ -41,6 +45,14 @@ public class Answer
 
 	public void setAnswerid(int answerid) {
 		this.answerid = answerid;
+	}
+
+	public Exam getExam() {
+		return exam;
+	}
+
+	public void setExam(Exam exam) {
+		this.exam = exam;
 	}
 
 	public String getRecordedanswer() {

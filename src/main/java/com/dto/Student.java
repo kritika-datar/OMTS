@@ -38,6 +38,9 @@ public class Student
 	@Column(name = "semester")
 	private String semester;
 	
+//	@Column(name = "givenexams")
+//	private int givenexams;
+	
 	@OneToMany(mappedBy = "student", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private Set<Answer> answers;
 	
