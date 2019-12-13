@@ -32,4 +32,11 @@ public class StudentController
 //		}
 //	}
 	}
+	
+	@RequestMapping(value = "/profile_setting_student")
+	public String profile_setting_student(HttpServletRequest request)
+	{
+		HttpSession httpSession = request.getSession();
+		return "profile_setting_student";
+	}
 }

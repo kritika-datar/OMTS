@@ -44,9 +44,9 @@ public class AnswerDAO
 		this.sfact = sfact;
 	}
 
-	public static void saveAnswers(int examid, String id, LinkedHashMap lhm)
+	public static void saveAnswers(int examid, String username, LinkedHashMap lhm)
 	{
-		String query="insert into answer(recordedanswer, studentid, questionid, examid) values(?,?,?,?)";
+		String query="insert into answer(recordedanswer, username, questionid, examid) values(?,?,?,?)";
 		
 		String URL="localhost:3306/";
 		String DATABASE_NAME="omts";
@@ -67,7 +67,7 @@ public class AnswerDAO
 				
 				ps=con.prepareStatement(query);
 				ps.setString(1,m.getValue().toString());
-				ps.setString(2, id);
+				ps.setString(2, username);
 				ps.setString(3,m.getKey().toString());
 				ps.setInt(4, examid);
 				

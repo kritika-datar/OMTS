@@ -25,4 +25,17 @@ public class ReportController
 		int examid = (Integer)session.getAttribute("examid");
 		return "resultDAO";
 	}
+	
+	@RequestMapping(value = "/result")
+	public String result(HttpServletRequest request)
+	{
+		HttpSession session = request.getSession(true);
+		return "result";
+	}
+	
+	@RequestMapping(value = "/warnresult")
+	public String warnresult(HttpServletRequest request)
+	{
+		return "warnresult";
+	}
 }

@@ -5,12 +5,13 @@
 <%-- <%@page import="com.UserDAO"%>
  --%>
  <%
-String id=(String)session.getAttribute("email");
+String username=(String)session.getAttribute("username");
+//out.println(username);
 LinkedHashMap lhm=(LinkedHashMap)session.getAttribute("all_answers");
+//out.println(lhm);
 int examid = (Integer)session.getAttribute("examid");
 ApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
 AnswerDAO qs = (AnswerDAO)context.getBean("answerdao");
-qs.saveAnswers(examid, id, lhm);
-session.invalidate();
-response.sendRedirect("index_student.jsp");
+qs.saveAnswers(examid, username, lhm);
+response.sendRedirect("warnresult");
 %>

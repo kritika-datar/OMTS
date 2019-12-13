@@ -8,7 +8,7 @@
 String question_no=request.getParameter("question_no");
 String req=request.getParameter("req");
 String set=(String)session.getAttribute("set");
-String email=(String)session.getAttribute("email");
+String username=(String)session.getAttribute("username");
 int examid = (Integer)session.getAttribute("examid");
 //out.println(examid);
 ApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
@@ -32,11 +32,15 @@ if(req!=null){
 		              lhm=new LinkedHashMap();
 		              lhm.put(question_id, answer);
 		              session.setAttribute("all_answers", lhm);
+		              /* session.setAttribute("examid", examid);
+		              session.setAttribute("email", email); */
 		          }
 		          else{
 		              lhm.put(question_id, answer);
 		              session.setAttribute("all_answers", lhm);
-		          }
+/* 		              session.setAttribute("examid", examid);
+		              session.setAttribute("email", email);
+ */		          }
 		    }
 	
 	}
@@ -53,11 +57,15 @@ else{
 			  lhm=new LinkedHashMap();
 			  lhm.put(question_id, answer);
 			  session.setAttribute("all_answers", lhm);
-		  }
+/* 			  session.setAttribute("examid", examid);
+			  session.setAttribute("email", email);
+ */		  }
 		  else{
 			  lhm.put(question_id, answer);
               session.setAttribute("all_answers", lhm);
-		  }
+/*               session.setAttribute("examid", examid);
+              session.setAttribute("email", email);
+ */		  }
 	}
 	
 

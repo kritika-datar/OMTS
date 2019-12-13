@@ -125,14 +125,14 @@
                         </li>
                         <!--li><a href="listing.jsp">Browse Questions</a>
                         </li-->
-                        <li class="dropdown"> <a class="dropdown-toggle " data-hover="dropdown" data-toggle="dropdown" data-animations="fadeInUp">Pages <b class="caret"></b></a>
+                       <!--  <li class="dropdown"> <a class="dropdown-toggle " data-hover="dropdown" data-toggle="dropdown" data-animations="fadeInUp">Pages <b class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 
                                 <li><a href="404">Error Page</a>
                                 </li>
                                 
                             </ul>
-                        </li>
+                        </li> -->
                         <li>
                             <div class="btn-nav"><a href="" class="btn btn-primary btn-small navbar-btn">Student Home</a>
                             </div>
@@ -172,8 +172,8 @@
                                         </li>
                                         <li> <a data-toggle="tab" href="#tab2"><i class="icofont icon-layers"></i><span class="hidden-xs">Report Card</span></a> 
                                         </li>
-                                        <li> <a data-toggle="tab" href="#tab3"><i class="icofont icon-layers"></i><span class="hidden-xs">Progress</span></a> 
-                                        </li>
+                                        <!-- <li> <a data-toggle="tab" href="#tab3"><i class="icofont icon-layers"></i><span class="hidden-xs">Progress</span></a> 
+                                        </li> -->
                                     </ul>
                                 </div>
                             </div>
@@ -186,8 +186,8 @@
                                     </div>
                                     <div id="tab2" class="tab-pane">
                                         <!-- Question Listing -->
-                             <%--            <jsp:include page="report_card"/> 
-                              --%>       </div>
+                                         <jsp:include page="/WEB-INF/views/instant_result.jsp"/> 
+                                     </div>
                                         <!-- Question Listing End -->
                                    <div id="tab3" class="tab-pane">
                                         <!-- Question Listing -->

@@ -51,7 +51,7 @@
                      %>
                      <form action="viewquestionsforexam" method="post">
                     	<tr>
-                    		<td><input type="hidden" value="<%=ex.getExamid() %>" name="examid"></td>
+                    		<td><input type="" value="<%=ex.getExamid() %>" name="examid" style="border:none"></td>
                     		<td><%=ex.getTitle() %></td>
                     		<td><%=ex.getCourse() %></td>
                     		<td><%=ex.getSemester() %></td>

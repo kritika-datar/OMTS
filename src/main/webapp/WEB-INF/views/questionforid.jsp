@@ -64,6 +64,16 @@ body {font-family: Arial, Helvetica, sans-serif;}
         <div class="table-wrapper">
             <div class="table-title">
                 <div class="row">
+                	<div class="col-lg-4 col-md-4 col-sm-6 col-xs-4">
+                        <ul class="top-nav nav-left">
+                            <li><a href="index_teacher">Home</a>
+                            </li>
+                            <!--li class="hidden-xs"><a href="blog.jsp">Blog</a>
+                            </li//-->
+           <!--                  <li  class="hidden-xs"><a href="contact.jsp">Contact Us</a>
+                            </li>   -->
+                        </ul>
+                    </div>
                     <div class="col-sm-6">
                         <h2> Questions For You</b></h2>
                     </div>

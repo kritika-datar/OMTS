@@ -41,8 +41,8 @@ public class Student
 //	@Column(name = "givenexams")
 //	private int givenexams;
 	
-	@OneToMany(mappedBy = "student", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	private Set<Answer> answers;
+//	@OneToMany(mappedBy = "student", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+//	private Set<Answer> answers;
 	
 	@OneToMany(mappedBy = "student",fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private Set<Report> reports;
@@ -79,13 +79,13 @@ public class Student
 		this.reports = reports;
 	}
 
-	public Set<Answer> getAnswers() {
-		return answers;
-	}
-
-	public void setAnswers(Set<Answer> answers) {
-		this.answers = answers;
-	}
+//	public Set<Answer> getAnswers() {
+//		return answers;
+//	}
+//
+//	public void setAnswers(Set<Answer> answers) {
+//		this.answers = answers;
+//	}
 
 	public String getRollno() {
 		return rollno;

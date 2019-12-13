@@ -75,7 +75,7 @@ exp.getExpertById((String)session.getAttribute("userid"));
 		<div class="row">
 			<div class="col-lg-4 col-md-4 col-sm-6 col-xs-4">
 				<ul class="top-nav nav-left">
-					<li><a href="index_teacher.jsp">Home</a>
+					<li><a href="index_teacher">Home</a>
 					</li>
 					<!--li class="hidden-xs"><a href="blog.jsp">Blog</a>
 					</li//-->
@@ -94,8 +94,8 @@ exp.getExpertById((String)session.getAttribute("userid"));
 							<img class="img-circle resize" alt="" src="resources/images/authors/13.png">
 							<span  style="text-transform: lowercase" class="hidden-xs small-padding">
 								<%
-                                                                    String name=(String)session.getAttribute("userid");
-                                                                    out.print(name);
+                                                                    String username=(String)session.getAttribute("username");
+                                                                    out.print(username);
                                                                     %>
 							 <i class="fa fa-caret-down"></i>
 							</span>
@@ -135,21 +135,21 @@ exp.getExpertById((String)session.getAttribute("userid"));
           </li//-->
           <!--li><a href="listing.jsp">Browse Questions</a>
           </li-->
-          <li class="dropdown"> <a class="dropdown-toggle " data-hover="dropdown" data-toggle="dropdown" data-animations="fadeInUp">Pages <b class="caret"></b></a>
+          <!-- <li class="dropdown"> <a class="dropdown-toggle " data-hover="dropdown" data-toggle="dropdown" data-animations="fadeInUp">Pages <b class="caret"></b></a>
             <ul class="dropdown-menu">
               
               <li><a href="404.jsp">Error Page</a>
 							</li>
-              <!--li><a href="contact.jsp">Contact Us</a>
-              </li-->
-              <!--li><a href="contact-2.jsp">Contact With Map</a>
-              </li//-->
+              li><a href="contact.jsp">Contact Us</a>
+              </li
+              li><a href="contact-2.jsp">Contact With Map</a>
+              </li//
             </ul>
-          </li>
-          <li>
+          </li> -->
+          <!-- <li>
             <div class="btn-nav"><a href="mcok_tests.jsp" class="btn btn-primary btn-small navbar-btn">Create a Mock Test</a>
             </div>
-          </li>
+          </li> -->
         </ul>
       </div>
       <!-- navigation menu end -->

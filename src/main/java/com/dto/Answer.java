@@ -23,8 +23,8 @@ public class Answer
 	private String recordedanswer;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "studentid")
-	private Student student;
+	@JoinColumn(name = "username")
+	private Login login;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "questionid")
@@ -63,12 +63,12 @@ public class Answer
 		this.recordedanswer = recordedanswer;
 	}
 
-	public Student getStudent() {
-		return student;
+	public Login getLogin() {
+		return login;
 	}
 
-	public void setStudent(Student student) {
-		this.student = student;
+	public void setLogin(Login login) {
+		this.login = login;
 	}
 
 	public Question getQuestion() {

@@ -1,5 +1,9 @@
 package com.dao;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.List;
 
 import org.hibernate.HibernateException;
@@ -10,8 +14,10 @@ import org.hibernate.Transaction;
 import org.springframework.orm.hibernate4.HibernateCallback;
 import org.springframework.orm.hibernate4.HibernateTemplate;
 
+import com.dto.Answer;
 import com.dto.Exam;
 import com.dto.Login;
+import com.dto.Score;
 import com.dto.Student;
 
 public class ExamDAO
@@ -99,6 +105,7 @@ public class ExamDAO
 	
 	public List<Exam> getAllNotTakenExamsForStudents(String username)
 	{
+				
 		List<Exam> lst = null;
 		
 		Login log = new Login();
@@ -119,7 +126,6 @@ public class ExamDAO
 					int a = st.get(0).getCourse();
 					String b = st.get(0).getSemester();
 					
-					
 					Query q = session.createQuery("FROM Exam E where E.course=:a AND E.semester=:b");
 					q.setParameter("a", a);
 					q.setParameter("b", b);
@@ -139,20 +145,67 @@ public class ExamDAO
 		return lst;
 	}
 	
-//	public List<Exam> showAllExams()
-//	{
-//		List<Exam> lst = null;
-//		
-//		try 
-//		{
-//			examRepository.findAll().forEach(lst::add);
-//		} 
-//		catch (Exception e) 
-//		{
-//			e.printStackTrace();
-//			return null;
-//		}
-//		
-//		return lst;
-//	}
+	public List<Score> getAllTakenExamsForStudents(String username)
+	{
+		List<Score> lst = null;
+		
+		try 
+		{
+			lst = htemplate.execute(new HibernateCallback<List<Score>>() {
+				
+				@SuppressWarnings({ "unchecked" })
+				@Override
+				public List<Score> doInHibernate(Session session) throws HibernateException {
+					
+					Query query = session.createQuery("FROM Score S where S.username=:username");
+					query.setParameter("username", username);
+					
+					List<Score> st = query.list();
+					
+					if(st.size()>0)
+						return st;
+					else
+						return null;
+				}
+			});
+		} 
+		catch (Exception e) 
+		{
+			e.printStackTrace();
+		}
+		
+		return lst;	
+	}
+	
+	public List<Score> showAllExams()
+	{
+		List<Score> lst = null;
+		
+		try
+		{
+			lst = htemplate.execute(new HibernateCallback<List<Score>>() {
+				
+				@SuppressWarnings({ "unchecked" })
+				@Override
+				public List<Score> doInHibernate(Session session) throws HibernateException {
+					
+					Query query = session.createQuery("FROM Score S");
+//					query.setParameter("username", username);
+					
+					List<Score> st = query.list();
+					
+					if(st.size()>0)
+						return st;
+					else
+						return null;
+				}
+			});
+		}
+		catch (Exception e) 
+		{
+			e.printStackTrace();
+		}
+		
+		return lst;
+	}
 }

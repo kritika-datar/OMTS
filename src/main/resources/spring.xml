@@ -29,6 +29,7 @@
 			<value>com.dto.Report</value>
 			<value>com.dto.Student</value>
 			<value>com.dto.Teacher</value>
+			<value>com.dto.Score</value>
 			</list>
 		</property>
 	</bean>

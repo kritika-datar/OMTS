@@ -78,7 +78,7 @@
 		<div class="row">
 			<div class="col-lg-4 col-md-4 col-sm-6 col-xs-4">
 				<ul class="top-nav nav-left">
-					<li><a href="index_student.jsp">Home</a>
+					<li><a href="index_student">Home</a>
 					</li>
 					<!--li class="hidden-xs"><a href="blog.jsp">Blog</a>
 					</li//-->
@@ -97,7 +97,7 @@
 							<img class="img-circle resize" alt="" src="resources/images/authors/13.png">
 							<span  style="text-transform: lowercase" class="hidden-xs small-padding">
 								<%
-                                                                    String name=(String)session.getAttribute("userid");
+                                                                    String name=(String)session.getAttribute("username");
                                                                     out.print(name);
                                                                     %>
 							 <i class="fa fa-caret-down"></i>
@@ -150,7 +150,7 @@
             </ul>
           </li>
           <li>
-            <div class="btn-nav"><a href="index_student.jsp" class="btn btn-primary btn-small navbar-btn">Student Home</a>
+            <div class="btn-nav"><a href="index_student" class="btn btn-primary btn-small navbar-btn">Student Home</a>
             </div>
           </li>
         </ul>

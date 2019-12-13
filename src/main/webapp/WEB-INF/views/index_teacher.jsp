@@ -126,14 +126,14 @@
                         </li>
                         <!--li><a href="listing.jsp">Browse Questions</a>
                         </li-->
-                        <li class="dropdown"> <a class="dropdown-toggle " data-hover="dropdown" data-toggle="dropdown" data-animations="fadeInUp">Pages <b class="caret"></b></a>
+                        <!-- <li class="dropdown"> <a class="dropdown-toggle " data-hover="dropdown" data-toggle="dropdown" data-animations="fadeInUp">Pages <b class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 
                                 <li><a href="404">Error Page</a>
                                 </li>
                                 
                             </ul>
-                        </li>
+                        </li> -->
                         <li>
                             <div class="btn-nav"><a href="upload_exam" class="btn btn-primary btn-small navbar-btn">Create a Mock Test</a>
                             </div>
@@ -173,9 +173,9 @@
                                         </li>
                                         <li> <a data-toggle="tab" href="#tab2"><i class="icofont icon-layers"></i><span class="hidden-xs">Marks Report</span></a> 
                                         </li>
-                                        <li> <a data-toggle="tab" href="#tab3"><i class="icofont icon-layers"></i><span class="hidden-xs">Graphical Representation of Scores</span></a> 
+<!--                                         <li> <a data-toggle="tab" href="#tab3"><i class="icofont icon-layers"></i><span class="hidden-xs">Graphical Representation of Scores</span></a> 
                                         </li>
-                                    </ul>
+ -->                                    </ul>
                                 </div>
                             </div>
                             <div class="panel-body">
@@ -185,16 +185,16 @@
                                         <jsp:include page="/WEB-INF/views/mock_tests.jsp"/>
                                         <!-- Question Listing End -->
                                     </div>
-<%--                                      <div id="tab2" class="tab-pane">
+                                      <div id="tab2" class="tab-pane">
                                         <!-- Question Listing -->
-                                        <jsp:include page="marks_report"/> 
+                                        <jsp:include page="/WEB-INF/views/all_result.jsp"/> 
                                     </div>
                                         <!-- Question Listing End -->
-                                   <div id="tab3" class="tab-pane">
+ <%--                                   <div id="tab3" class="tab-pane">
                                         <!-- Question Listing -->
                                         <jsp:include page="mock_tests"/> 
                                     </div>
- --%>                                    </div>
+  --%>                                    </div>
                                     
                                 </div>
                             </div>

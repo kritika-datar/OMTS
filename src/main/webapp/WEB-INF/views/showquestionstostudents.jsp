@@ -51,9 +51,11 @@
                   	
                   	QuestionDAO qs = (QuestionDAO)context.getBean("questiondao");
                     
+                  	out.println(username);
                   	int examid = (Integer)session.getAttribute("examid");
                   	List<Question> lst = qs.getAllQuestionsByExamId(examid);
-                  	int max_questions = 2;
+                  	int a = lst.size();
+                  	int max_questions = a;
                   	System.out.print(examid);
                     
                     
@@ -113,10 +115,10 @@ List<Object[]> anslist = ado.getAllQuestionsAndAnswersByExpert(
             var obj=JSON.parse(data);
             question_id=obj.id;
             $('#question').html('<b>Question '+question_no+': </b><br/>'+obj.question);
-            $('#a').html('<b>A:</b><input type="radio" name="answer" value="A">'+obj.a);
-            $('#b').html('<b>B:</b><input type="radio" name="answer" value="B">'+obj.b);
-            $('#c').html('<b>C:</b><input type="radio" name="answer" value="C">'+obj.c);
-            $('#d').html('<b>D:</b><input type="radio" name="answer" value="D">'+obj.d);
+            $('#a').html('<b>A:</b><input type="radio" name="answer" value="optiona">'+obj.a);
+            $('#b').html('<b>B:</b><input type="radio" name="answer" value="optionb">'+obj.b);
+            $('#c').html('<b>C:</b><input type="radio" name="answer" value="optionc">'+obj.c);
+            $('#d').html('<b>D:</b><input type="radio" name="answer" value="optiond">'+obj.d);
             $('#qno').html(' '+<%=examid%>);
         });
         
@@ -155,10 +157,10 @@ List<Object[]> anslist = ado.getAllQuestionsAndAnswersByExpert(
                 var obj=JSON.parse(data);
                 question_id=obj.id;
                 $('#question').html('<b>Question '+question_no+': </b><br/>'+obj.question);
-                $('#a').html('<b>A:</b><input type="radio" name="answer" value="A">'+obj.a);
-                $('#b').html('<b>B:</b><input type="radio" name="answer" value="B">'+obj.b);
-                $('#c').html('<b>C:</b><input type="radio" name="answer" value="C">'+obj.c);
-                $('#d').html('<b>D:</b><input type="radio" name="answer" value="D">'+obj.d);
+                $('#a').html('<b>A:</b><input type="radio" name="answer" value="optiona">'+obj.a);
+                $('#b').html('<b>B:</b><input type="radio" name="answer" value="optionb">'+obj.b);
+                $('#c').html('<b>C:</b><input type="radio" name="answer" value="optionc">'+obj.c);
+                $('#d').html('<b>D:</b><input type="radio" name="answer" value="optiond">'+obj.d);
             });
         	
         	if(question_no==1){
@@ -206,10 +208,10 @@ List<Object[]> anslist = ado.getAllQuestionsAndAnswersByExpert(
                 var obj=JSON.parse(data);
                 question_id=obj.id;
                 $('#question').html('<b>Question '+question_no+': </b><br/>'+obj.question);
-                $('#a').html('<b>A:</b><input type="radio" name="answer" value="A" required>'+obj.a);
-                $('#b').html('<b>B:</b><input type="radio" name="answer" value="B">'+obj.b);
-                $('#c').html('<b>C:</b><input type="radio" name="answer" value="C">'+obj.c);
-                $('#d').html('<b>D:</b><input type="radio" name="answer" value="D">'+obj.d);
+                $('#a').html('<b>A:</b><input type="radio" name="answer" value="optiona" required>'+obj.a);
+                $('#b').html('<b>B:</b><input type="radio" name="answer" value="optionb">'+obj.b);
+                $('#c').html('<b>C:</b><input type="radio" name="answer" value="optionc">'+obj.c);
+                $('#d').html('<b>D:</b><input type="radio" name="answer" value="optiond">'+obj.d);
             });
             
             if(question_no==1){

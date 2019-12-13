@@ -34,5 +34,11 @@ public class TeacherController
 	{
 		return "index_teacher";
 	}
+	
+	@RequestMapping(value = "/profile_setting_teacher")
+	public String profile_setting_teacher()
+	{
+		return "profile_setting_teacher";
+	}
 
 }
